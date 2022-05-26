@@ -1,0 +1,103 @@
+{
+  "parserOptions": {
+    // サポートしたいJavaScriptの言語オプション
+    // 初期値の2017はES2017の文法をサポートするもの
+    "ecmaVersion": 2020
+  },
+  // 公開されているpluginを指定する場所
+  "plugins": [
+    "promise"
+  ],
+  // ES Lint の推奨する設定を引き継ぐ
+  // 右のページのチェックマークがついているものが適用される → https://eslint.org/docs/rules/
+  "extends": "eslint:recommended",
+  "rules": {
+    // ES Lintの推奨ルールから、「コンソールの使用禁止」というルールを削除
+    "no-console": "off",
+    // ES Lintの推奨ルールから、 「正規表現の複数のスペースを許可しない」というルールを削除
+    "no-regex-spaces": "off",
+    // ES Lintの推奨ルールから、 「デバッガの使用」というルールを削除
+    "no-debugger": "off",
+    // ES Lintの推奨ルールから、 「未使用の変数を禁止する」ルールを削除
+    "no-unused-vars": "off",
+    // ES Lintの推奨ルールから、 「インデントのための混合スペースとタブを禁止する」ルールを削除
+    "no-mixed-spaces-and-tabs": "off",
+    // ES Lintの推奨ルールから、 「宣言されていない変数を禁止する」を削除
+    "no-undef": "off",
+    // 通常の文字列にテンプレートリテラルのプレースホルダのようなものが含まれている場合の警告
+    // 例）"これは${apple}です" 左の例の場合、テンプレートリテラルでは変数を展開できる${}が普通の文字列として使われているので、警告が出る
+    "no-template-curly-in-string": 1,
+    // return文は常に値を指定するか、値を指定しないかのどちらでもない場合の警告
+    "consistent-return": 1,
+    // 配列メソッドのコールバックでreturn文がない場合の警告
+    "array-callback-return": 1,
+    // == や != など、型を確認しないものを使うとエラー。 === や !== など、型またチェックする比較のみ許容する
+    "eqeqeq": 2,
+    // alert, confirm, prompt などのアラート系メソッドを使うとエラー
+    "no-alert": 2,
+    // arguments.caller と arguments.callee を使うとエラー
+    "no-caller": 2,
+    // null との比較で == や != を使うとエラー
+    "no-eq-null": 2,
+    // eval()メソッドを使うとエラー
+    "no-eval": 2,
+    // Object.defineProperty(Array.prototype, "times", { value: 999 }); のように、組み込みオブジェクトのプロトタイプを直接変更しようとすると警告
+    "no-extend-native": 1,
+    // bind()メソッドを使うと警告
+    "no-extra-bind": 1,
+    // A: while (a) {
+    //   break A;
+    // }
+    // 上記のようなラベル表記を使うと警告
+    "no-extra-label": 1,
+    // 浮動小数点の前後に数値がないとエラー
+    // 例） 1. や .5 といった表記はエラー。1.0 や 0.5 といった表記にする必要がある。
+    "no-floating-decimal": 2,
+    // 分かりづらい型変換を使うと警告
+    // 例） 真偽地に変換 !!variables は警告。 Boolean(variables)とするべき
+    "no-implicit-coercion": 1,
+    // ループ内で関数を作成すると警告
+    "no-loop-func": 1,
+    // new Function を使うとエラー
+    "no-new-func": 2,
+    // 文字列、数値、ブールの新しいインスタンスを作成すると警告
+    "no-new-wrappers": 1,
+    // throwで例外を投げる際にError()オブジェクトでwrapしていない場合にエラー
+    "no-throw-literal": 2,
+    // Promise.rejectで例外を投げる際にError()オブジェクトでwrapしていない場合にエラー
+    "prefer-promise-reject-errors": 2,
+    // 無限ループが意図される構文はエラー
+    "for-direction": 2,
+    // プロパティゲッターにreturnがないとエラー
+    "getter-return": 2,
+    // ループ内awaitでエラー
+    "no-await-in-loop": 2,
+    // -0 と比較するとエラー
+    // 例）if (x === -0)
+    "no-compare-neg-zero": 2,
+    // function のスコープとcatch節の引数の名前が一致した際に警告
+    // 例） try {} catch (err) {}
+    // function err () {}
+    "no-catch-shadow": 1,
+    // 定義済みの名前を関数名や変数名で上書きするとエラー
+    // 例） function NaN(){}
+    // !function(Infinity){};
+    // var undefined = 5;
+    // try {} catch(eval){}
+    "no-shadow-restricted-names": 2,
+    // 配列メソッドのコールバックでreturnがないとエラー
+    "callback-return": 2,
+    // エラーコールバック関数内で、エラーオブジェクトを未使用だとエラー
+    "handle-callback-err": 2,
+    // __dirname や __filename の文字列連結をすると警告
+    "no-path-concat": 1,
+    // 無名関数を使う際にfunctionを使うと警告（thisの問題につきアロー関数推奨）
+    "prefer-arrow-callback": 1,
+    // awaitがないasync関数はエラー
+    "promise/always-return": 2,
+    // promiseに対してcatchがないとエラー
+    "promise/catch-or-return": 2,
+    // then()やcatch()の入れ子は警告
+    "promise/no-nesting": 1
+  }
+}
