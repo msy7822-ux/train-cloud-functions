@@ -34,7 +34,6 @@ exports.fetchBookInfo = functions.https.onRequest((request, response) => {
         response.status(500).send(err);
       });
   }
-
 });
 
 // firebaseにbooksドキュメントを追加するエンドポイント
@@ -61,5 +60,18 @@ exports.addBookInfo = functions.https.onRequest((request, response) => {
       console.log(err);
       response.status(500).send(err);
     });
-
 });
+
+// booksコレクションに値が追加されたら、onCreateメソッドが呼び出される
+exports.onBookCreate = functions.firestore.document('books/{isbn}').onCreate(async (snapshot, context) => {
+  // 新規追加された値を取得する
+  const newBookInfo = snapshot.data();
+
+  const isbn = context.params.isbn
+  const title = newBookInfo.bookInfo.title
+  const price = newBookInfo.bookInfo.price
+
+  const releaseDate = newBookInfo.bookInfo.releaseDate;
+
+  console.log(`【新着本追加】ISBN: ${isbn}, タイトル: ${title}, 価格: ${price}, 出版日: ${releaseDate}`);
+})
