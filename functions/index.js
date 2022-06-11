@@ -3,6 +3,17 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 const db = admin.firestore();
 
+// cloud storageに新しいオブジェクトが作成されたことをトリガーに発火する処理
+exports.noticeCreateEvent = functions.storage.object().onFinalize(obj => {
+  const bucketName = obj.bucket;
+  const fileName = obj.name;
+  const fileSize = obj.size;
+  const contentType = obj.contentType;
+
+  console.log(`バケット：${bucketName}\nファイル名：${fileName}\nファイルサイズ：${fileSize}byte\nコンテンツタイプ：${contentType}`);
+    return;
+});
+
 // user認証が完了してユーザーが追加された時に発火する処理
 exports.sendWelcomeEmail = functions.auth.user().onCreate(async (user) => {
   const {email} = user;
