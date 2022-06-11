@@ -6,7 +6,6 @@ const db = admin.firestore();
 // user認証が完了してユーザーが追加された時に発火する処理
 exports.sendWelcomeEmail = functions.auth.user().onCreate(async (user) => {
   const {email} = user;
-  console.log(user);
   console.info(`登録ユーザーのE-Mail:${email}`);
 
   // メールを送信する処理
